@@ -1,0 +1,71 @@
+### below is the query operation
+GET http://localhost:4004/odata/v4/doc-read/zdocument
+
+### read operation
+GET http://localhost:4004/odata/v4/odata/v4/doc-read/zdocument('94478480-d2fe-45e7-b796-cb044cae51d9')
+
+### create Operation
+
+POST http://localhost:4004/odata/v4/
+Content-Type: application/json
+
+{
+  "name": "Macbook Neo",
+  "price": 55000,
+  "discount": 10,
+  "stock": 20
+}
+/*
+### update operations 
+PUT http://localhost:4004/odata/v4/products-mgmt/Products('600001')
+Content-Type: application/json
+
+{
+  "ID": "600001",
+  "name": "Macbook Neo",
+  "price": 55000,
+  "discount": 10,
+  "stock": 20
+}
+
+### patch operation
+PATCH http://localhost:4004/odata/v4/products-mgmt/Products('600001')
+Content-Type: application/json
+
+{
+    "stock": 10
+}
+
+### delete operation
+DELETE http://localhost:4004/odata/v4/products-mgmt/Products(ID=b8b536b7-f134-400a-bfa8-3227a3a0b593,IsActiveEntity=true)
+
+### order queries
+
+POST http://localhost:4004/odata/v4/products-mgmt/Orders
+Content-Type: application/json
+
+{
+
+"customerName": "Tiru",
+"customerMobile": "9990099871",
+"storeName": "GACHIBOWLI",
+"netPrice": 859805.63,
+        "items": [
+        {
+        "product_ID": "db70b06b-4516-4821-be95-2f78e69f3276",
+        "quantity": 99,
+        "unitPrice": 1424489.78,
+        "discount": 61,
+        "totalPrice": 7747517.87
+        },
+        {
+        "product_ID": "74360e3b-2bae-4b1b-8f54-a529a79c3891",
+        "quantity": 15,
+        "unitPrice": 8499966.2,
+        "discount": 33,
+        "totalPrice": 7615651.75
+        }
+        ]
+}
+
+*/

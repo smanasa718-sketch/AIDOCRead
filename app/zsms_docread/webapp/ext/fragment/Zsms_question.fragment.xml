@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	 <VBox id="_IDGenVBox">
+        
+        <Input
+            id="questionInput" 
+            placeholder="Type your question here..." 
+            width="100%" />
+        
+    </VBox>
+</core:FragmentDefinition>
+
