@@ -1,0 +1,19 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GenericDefinitionImpl = void 0;
+class GenericDefinitionImpl {
+    symbolName;
+    kind;
+    absoluteName;
+    constructor(symbolName, kind, absoluteName = symbolName) {
+        this.symbolName = symbolName;
+        this.kind = kind;
+        this.absoluteName = absoluteName;
+    }
+    /** @deprecated */
+    get fullyQualifiedName() {
+        return this.symbolName;
+    }
+}
+exports.GenericDefinitionImpl = GenericDefinitionImpl;
+//# sourceMappingURL=genericDefinition.js.map

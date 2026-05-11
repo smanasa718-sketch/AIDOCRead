@@ -1,0 +1,14 @@
+VIEW docReadService_zdocument AS SELECT
+  zdocument_0.ID,
+  zdocument_0.createdAt,
+  zdocument_0.createdBy,
+  zdocument_0.modifiedAt,
+  zdocument_0.modifiedBy,
+  zdocument_0.fileName,
+  zdocument_0.title,
+  zdocument_0."MIMETYPE",
+  zdocument_0.content,
+  zdocument_0.extractedText,
+  zdocument_0.embedding,
+  zdocument_0.aiAnwer
+FROM sms_aidocread_db_zdocument AS zdocument_0

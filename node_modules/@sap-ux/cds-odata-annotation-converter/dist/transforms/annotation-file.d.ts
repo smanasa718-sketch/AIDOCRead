@@ -1,0 +1,32 @@
+import { Position, Range } from '@sap-ux/text-document-utils';
+import type { Assignment } from '@sap-ux/cds-annotation-parser';
+import type { CdsVocabulary, VocabularyService } from '@sap-ux/odata-vocabularies';
+import type { AnnotationAssignmentToken, FileIndex, IdentifierToken, MetadataCollector, CdsCompilerFacade, PropagatedTargetMap } from '@sap/ux-cds-compiler-facade';
+import { TARGET_TYPE } from '@sap-ux/odata-annotation-core';
+import type { Namespace, AnnotationFile, PositionPointer, Reference } from '@sap-ux/odata-annotation-core';
+import type { ExtendedDiagnostic } from '@sap-ux/odata-annotation-core-types';
+export { TARGET_TYPE } from '@sap-ux/odata-annotation-core-types';
+export declare const adjustCdsTermNames: (assignment: Assignment, cdsVocabulary: CdsVocabulary) => Assignment;
+export declare const toAssignment: (annotation: AnnotationAssignmentToken, vocabularyService: VocabularyService) => Assignment;
+export interface Target {
+    type: typeof TARGET_TYPE;
+    name: string;
+    kind: string;
+    nameRange?: Range;
+    range?: Range;
+    assignments: Assignment[];
+}
+export declare const toTarget: (carrier: IdentifierToken | undefined, carrierName: string, compilerFacade?: CdsCompilerFacade) => Target;
+export interface CdsAnnotationFile {
+    namespace?: Namespace;
+    references: Reference[];
+    targetMap: Map<string, Target>;
+}
+export declare const toTargetMap: (fileIndex: FileIndex, uri: string, vocabularyService: VocabularyService, cdsCompilerFacade?: CdsCompilerFacade) => CdsAnnotationFile;
+export declare const toAnnotationFile: (fileUri: string, vocabularyService: VocabularyService, cdsAnnotationFile: CdsAnnotationFile, metadataCollector: MetadataCollector, position?: Position, propagationMap?: PropagatedTargetMap, mergePropagatedAnnotations?: boolean) => {
+    file: AnnotationFile;
+    pointer?: PositionPointer;
+    nodeRange?: Range;
+    diagnostics?: ExtendedDiagnostic[];
+};
+//# sourceMappingURL=annotation-file.d.ts.map

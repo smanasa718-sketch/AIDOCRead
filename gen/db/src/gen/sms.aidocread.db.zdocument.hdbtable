@@ -1,0 +1,15 @@
+COLUMN TABLE sms_aidocread_db_zdocument (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  fileName NVARCHAR(5000),
+  title NVARCHAR(5000),
+  "MIMETYPE" NVARCHAR(5000),
+  content BLOB,
+  extractedText NCLOB,
+  embedding NCLOB,
+  aiAnwer NCLOB,
+  PRIMARY KEY(ID)
+)

@@ -1,0 +1,19 @@
+import type { Element, FormatterOptions, TextNode } from '@sap-ux/odata-annotation-core';
+interface EdmJsonOptions extends FormatterOptions {
+    includeEdmJson?: boolean;
+    removeRootElementContainer?: boolean;
+    /**
+     * If set to true, then output will not be indented.
+     */
+    skipIndent?: boolean;
+}
+/**
+ * Serializes an internal representation node to EDM JSON format string.
+ *
+ * @param node - The node to be serialized.
+ * @param options - The options for EDM JSON serialization.
+ * @returns The serialized string based on the type of the node.
+ */
+export declare function printEdmJson(node: Element | TextNode, options: EdmJsonOptions): string;
+export {};
+//# sourceMappingURL=edm-json.d.ts.map

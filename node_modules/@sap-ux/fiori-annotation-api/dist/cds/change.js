@@ -1,0 +1,260 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CONVERT_TO_COMPOUND_ANNOTATION_CHANGE_TYPE = exports.MOVE_COLLECTION_VALUE_CHANGE_TYPE = exports.SET_FLAGS_CHANGE_TYPE = exports.UPDATE_PRIMITIVE_VALUE_CHANGE_TYPE = exports.REPLACE_TEXT_VALUE_CHANGE_TYPE = exports.REPLACE_RECORD_PROPERTY_CHANGE_TYPE = exports.REPLACE_NODE_CHANGE_TYPE = exports.createDeleteQualifierChange = exports.DELETE_QUALIFIER_CHANGE_TYPE = exports.createDeletePrimitiveValueChange = exports.DELETE_PRIMITIVE_VALUE_CHANGE_TYPE = exports.createDeleteEmbeddedChange = exports.DELETE_EMBEDDED_ANNOTATION_CHANGE_TYPE = exports.DELETE_ANNOTATION_CHANGE_TYPE = exports.DELETE_ANNOTATION_GROUP_ITEMS_CHANGE_TYPE = exports.DELETE_ANNOTATION_GROUP_CHANGE_TYPE = exports.createDeleteRecordPropertyChange = exports.DELETE_RECORD_PROPERTY_CHANGE_TYPE = exports.createDeleteRecordChange = exports.DELETE_RECORD_CHANGE_TYPE = exports.createDeleteTargetChange = exports.DELETE_TARGET_CHANGE_TYPE = exports.INSERT_REFERENCE_CHANGE_TYPE = exports.INSERT_QUALIFIER_CHANGE_TYPE = exports.createInsertPrimitiveValueChange = exports.INSERT_PRIMITIVE_VALUE_TYPE = exports.createInsertRecordPropertyChange = exports.INSERT_RECORD_PROPERTY_CHANGE_TYPE = exports.createInsertEmbeddedAnnotationChange = exports.INSERT_EMBEDDED_ANNOTATION_CHANGE_TYPE = exports.createInsertAnnotationChange = exports.INSERT_ANNOTATION_CHANGE_TYPE = exports.createInsertCollectionChange = exports.INSERT_COLLECTION_CHANGE_TYPE = exports.createInsertRecordChange = exports.INSERT_RECORD_CHANGE_TYPE = exports.INSERT_TARGET_CHANGE_TYPE = void 0;
+exports.createInsertTargetChange = createInsertTargetChange;
+exports.createInsertQualifierChange = createInsertQualifierChange;
+exports.createInsertReferenceChange = createInsertReferenceChange;
+exports.createDeleteAnnotationGroupChange = createDeleteAnnotationGroupChange;
+exports.createDeleteAnnotationGroupItemsChange = createDeleteAnnotationGroupItemsChange;
+exports.createDeleteAnnotationChange = createDeleteAnnotationChange;
+exports.createReplaceNodeChange = createReplaceNodeChange;
+exports.createReplaceRecordPropertyChange = createReplaceRecordPropertyChange;
+exports.createReplaceTextValueChange = createReplaceTextValueChange;
+exports.createUpdatePrimitiveValueChange = createUpdatePrimitiveValueChange;
+exports.createSetFlagsChange = createSetFlagsChange;
+exports.createMoveCollectionChange = createMoveCollectionChange;
+exports.createConvertToCompoundAnnotationChange = createConvertToCompoundAnnotationChange;
+//#region Insert Changes
+exports.INSERT_TARGET_CHANGE_TYPE = 'insert-target';
+/**
+ * Creates a change to insert a new annotation target into a document.
+ *
+ * @param pointer - Pointer to an element.
+ * @param target - Internal representation of the target.
+ * @param index - Before which child element the new element should be inserted. If omitted will be added at the end.
+ * @param complexTypePathSegments
+ * @returns Insert target change.
+ */
+function createInsertTargetChange(pointer, target, index, complexTypePathSegments) {
+    return {
+        type: exports.INSERT_TARGET_CHANGE_TYPE,
+        pointer,
+        target,
+        complexTypePathSegments,
+        index
+    };
+}
+function insertElementChangeFactory(type) {
+    return function (pointer, element, index) {
+        return {
+            type,
+            pointer,
+            element,
+            index
+        };
+    };
+}
+exports.INSERT_RECORD_CHANGE_TYPE = 'insert-record';
+exports.createInsertRecordChange = insertElementChangeFactory(exports.INSERT_RECORD_CHANGE_TYPE);
+exports.INSERT_COLLECTION_CHANGE_TYPE = 'insert-collection';
+exports.createInsertCollectionChange = insertElementChangeFactory(exports.INSERT_COLLECTION_CHANGE_TYPE);
+exports.INSERT_ANNOTATION_CHANGE_TYPE = 'insert-annotation';
+exports.createInsertAnnotationChange = insertElementChangeFactory(exports.INSERT_ANNOTATION_CHANGE_TYPE);
+exports.INSERT_EMBEDDED_ANNOTATION_CHANGE_TYPE = 'insert-embedded-annotation';
+exports.createInsertEmbeddedAnnotationChange = insertElementChangeFactory(exports.INSERT_EMBEDDED_ANNOTATION_CHANGE_TYPE);
+exports.INSERT_RECORD_PROPERTY_CHANGE_TYPE = 'insert-record-property';
+exports.createInsertRecordPropertyChange = insertElementChangeFactory(exports.INSERT_RECORD_PROPERTY_CHANGE_TYPE);
+exports.INSERT_PRIMITIVE_VALUE_TYPE = 'insert-primitive-value';
+exports.createInsertPrimitiveValueChange = insertElementChangeFactory(exports.INSERT_PRIMITIVE_VALUE_TYPE);
+exports.INSERT_QUALIFIER_CHANGE_TYPE = 'insert-qualifier';
+/**
+ * Creates a change to insert a qualifier to an annotation.
+ *
+ * @param pointer - Pointer to an annotation.
+ * @param value - Qualifier.
+ * @returns Insert qualifier change.
+ */
+function createInsertQualifierChange(pointer, value) {
+    return {
+        type: exports.INSERT_QUALIFIER_CHANGE_TYPE,
+        pointer,
+        value
+    };
+}
+exports.INSERT_REFERENCE_CHANGE_TYPE = 'insert-reference';
+/**
+ * Creates a change to insert file references into a document.
+ *
+ * @param pointer - Pointer to a document.
+ * @param references - File references that needs to be added.
+ * @returns Insert reference change.
+ */
+function createInsertReferenceChange(pointer, references) {
+    return {
+        type: exports.INSERT_REFERENCE_CHANGE_TYPE,
+        pointer,
+        references
+    };
+}
+function deleteChangeFactory(type) {
+    return function (pointer) {
+        return {
+            type,
+            pointer
+        };
+    };
+}
+exports.DELETE_TARGET_CHANGE_TYPE = 'delete-target';
+exports.createDeleteTargetChange = deleteChangeFactory(exports.DELETE_TARGET_CHANGE_TYPE);
+exports.DELETE_RECORD_CHANGE_TYPE = 'delete-record';
+exports.createDeleteRecordChange = deleteChangeFactory(exports.DELETE_RECORD_CHANGE_TYPE);
+exports.DELETE_RECORD_PROPERTY_CHANGE_TYPE = 'delete-record-property';
+exports.createDeleteRecordPropertyChange = deleteChangeFactory(exports.DELETE_RECORD_PROPERTY_CHANGE_TYPE);
+exports.DELETE_ANNOTATION_GROUP_CHANGE_TYPE = 'delete-annotation-group';
+exports.DELETE_ANNOTATION_GROUP_ITEMS_CHANGE_TYPE = 'delete-annotation-group-items';
+/**
+ * Creates a change to delete an annotation group.
+ *
+ * @param pointer - pointer to an annotation group
+ * @returns Delete annotation group change.
+ */
+function createDeleteAnnotationGroupChange(pointer) {
+    return {
+        type: exports.DELETE_ANNOTATION_GROUP_CHANGE_TYPE,
+        pointer
+    };
+}
+/**
+ * Creates a change to delete all items within an annotation group.
+ *
+ * @param pointer - pointer to an annotation group
+ * @returns Delete annotation group change.
+ */
+function createDeleteAnnotationGroupItemsChange(pointer) {
+    return {
+        type: exports.DELETE_ANNOTATION_GROUP_ITEMS_CHANGE_TYPE,
+        pointer
+    };
+}
+exports.DELETE_ANNOTATION_CHANGE_TYPE = 'delete-annotation';
+/**
+ * Creates a change to delete an annotation.
+ *
+ * @param pointer - Pointer to an annotation.
+ * @param target - Target name.
+ * @returns Delete annotation change.
+ */
+function createDeleteAnnotationChange(pointer, target) {
+    return {
+        type: exports.DELETE_ANNOTATION_CHANGE_TYPE,
+        pointer,
+        target
+    };
+}
+exports.DELETE_EMBEDDED_ANNOTATION_CHANGE_TYPE = 'delete-embedded-annotation';
+exports.createDeleteEmbeddedChange = deleteChangeFactory(exports.DELETE_EMBEDDED_ANNOTATION_CHANGE_TYPE);
+exports.DELETE_PRIMITIVE_VALUE_CHANGE_TYPE = 'delete-primitive-value';
+exports.createDeletePrimitiveValueChange = deleteChangeFactory(exports.DELETE_PRIMITIVE_VALUE_CHANGE_TYPE);
+exports.DELETE_QUALIFIER_CHANGE_TYPE = 'delete-qualifier';
+exports.createDeleteQualifierChange = deleteChangeFactory(exports.DELETE_QUALIFIER_CHANGE_TYPE);
+//#endregion
+//#region Modification Changes
+exports.REPLACE_NODE_CHANGE_TYPE = 'replace-node';
+/**
+ * Creates a change to replace a node with a new element.
+ *
+ * @param pointer - Pointer to a node.
+ * @param element - Replacement node in internal representation.
+ * @returns Replace node change.
+ */
+function createReplaceNodeChange(pointer, element) {
+    return {
+        type: exports.REPLACE_NODE_CHANGE_TYPE,
+        pointer,
+        newElement: element
+    };
+}
+exports.REPLACE_RECORD_PROPERTY_CHANGE_TYPE = 'replace-record-property';
+/**
+ * Creates a change to replace a record property with a new element.
+ *
+ * @param pointer - Pointer to a record property.
+ * @param element - New Record property in internal representation.
+ * @returns Replace record property change.
+ */
+function createReplaceRecordPropertyChange(pointer, element) {
+    return {
+        type: exports.REPLACE_RECORD_PROPERTY_CHANGE_TYPE,
+        pointer,
+        newProperty: element
+    };
+}
+exports.REPLACE_TEXT_VALUE_CHANGE_TYPE = 'replace-text-value';
+/**
+ * Creates a change to replace a text value with a new text value.
+ *
+ * @param pointer - Pointer to a primitive value.
+ * @param newValue - New text value.
+ * @returns Replace text value change.
+ */
+function createReplaceTextValueChange(pointer, newValue) {
+    return {
+        type: exports.REPLACE_TEXT_VALUE_CHANGE_TYPE,
+        pointer,
+        newValue
+    };
+}
+exports.UPDATE_PRIMITIVE_VALUE_CHANGE_TYPE = 'update-primitive-value';
+/**
+ * Creates a change to update a primitive value.
+ *
+ * @param pointer - Pointer to a primitive value.
+ * @param newValue - New value.
+ * @returns Replace primitive value change.
+ */
+function createUpdatePrimitiveValueChange(pointer, newValue) {
+    return {
+        type: exports.UPDATE_PRIMITIVE_VALUE_CHANGE_TYPE,
+        pointer,
+        newValue
+    };
+}
+//#endregion
+exports.SET_FLAGS_CHANGE_TYPE = 'set-flags';
+/**
+ * Creates a change to set enum flags on a collection.
+ *
+ * @param pointer - Pointer to a enum flags node (collection).
+ * @param value - A list of enum member names separated by spaces. Can also contain type information in OData format e.g Communication.PhoneType/work.
+ * @returns Set flags change.
+ */
+function createSetFlagsChange(pointer, value) {
+    return {
+        type: exports.SET_FLAGS_CHANGE_TYPE,
+        pointer,
+        value
+    };
+}
+exports.MOVE_COLLECTION_VALUE_CHANGE_TYPE = 'move-collection-value';
+/**
+ * Creates a change to move nodes within a collection to a new position.
+ *
+ * @param pointer - Pointer to a container where the nodes will be moved.
+ * @param fromPointers - Pointers to nodes which needs to be moved.
+ * @param index - Before which child element the new element should be inserted. If omitted will be added at the end.
+ * @returns Move collection value change.
+ */
+function createMoveCollectionChange(pointer, fromPointers, index) {
+    return {
+        type: exports.MOVE_COLLECTION_VALUE_CHANGE_TYPE,
+        pointer,
+        fromPointers,
+        index
+    };
+}
+exports.CONVERT_TO_COMPOUND_ANNOTATION_CHANGE_TYPE = 'convert-to-compound-annotation';
+/**
+ * Creates a change to convert an annotation to compound format.
+ *
+ * @param pointer - Pointer to an assignment.
+ * @param applyContentIndentation - Flag indicating if content should be also indented.
+ * @returns Convert to compound annotation change.
+ */
+function createConvertToCompoundAnnotationChange(pointer, applyContentIndentation) {
+    return {
+        type: exports.CONVERT_TO_COMPOUND_ANNOTATION_CHANGE_TYPE,
+        pointer,
+        applyContentIndentation
+    };
+}
+//# sourceMappingURL=change.js.map
