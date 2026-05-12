@@ -110,7 +110,18 @@ const queryVector =
   embeddingResponse.embeddings[0].values;
 
    
-    // Step 3: Cosine similarity
+    /*  Now we got 2 vectors 
+     A -> Question
+     B -> Document which we saved
+      Note that we are using same AI to convert vector both will have same length
+
+     Now the formula is A*B/sqrt A * sqrt B -> this gives matched result 
+     (-1 -> Opposite 
+       0 -> Unmatched
+       1 -> Matched )
+      
+       doing above logic below.
+    */
     function cosineSim(a, b) {
       let dot = 0, magA = 0, magB = 0;
 
