@@ -121,6 +121,7 @@ const queryVector =
        1 -> Matched )
       
        doing above logic below.
+       My Reference : https://www.youtube.com/watch?v=pgzXzVU4nJQ
     */
     function cosineSim(a, b) {
       let dot = 0, magA = 0, magB = 0;
